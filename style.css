@@ -40,7 +40,7 @@ button {
   background-image: linear-gradient(to right, #010101, #121212, #010101)
 }
 iframe {
-  pointer-events: none;
+  /*pointer-events: none;*/
 }
 .container {
   position: relative;
