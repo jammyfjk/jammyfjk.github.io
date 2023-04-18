@@ -83,6 +83,7 @@ function addPost(ci) {
             } else if (mediaLink.toLowerCase().includes("redgifs.com") || mediaLink.toLowerCase().includes("gfycat.com")) {
                 try {
                     mediaLink = postData.reddit_video_preview.scrubber_media_url
+                    console.log(mediaLink)
                     fetch(mediaLink)
                     var vid = document.createElement("video")
                     vid.setAttribute('playsinline', 'playsinline')
@@ -96,8 +97,8 @@ function addPost(ci) {
                     iframe.scroll = "no";
                     const mL = mediaLink.replace("/watch", "")
                     iframe.src = mL.substring(0, mL.lastIndexOf("/")) + "/ifr" + mL.substring(mL.lastIndexOf("/"));
-                }
                     encloser.insertAdjacentElement("beforeend", iframe)
+                }
             } else if (mediaLink.toLowerCase().includes("imgur.com") && mediaLink.toLowerCase().includes(".gifv")) {
                 var vid = document.createElement("video")
                 vid.height = 500
