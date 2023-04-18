@@ -209,7 +209,7 @@ var posts;
 var currInd = 0;
 var currArr = []
 
-fetch("https://eternity-no-percentage78-80350-default-rtdb.firebaseio.com/saved/items.json?print=pretty")
+fetch(prompt("Enter private URL"))
     .then(response => response.json())
     .then(json => {
         posts = Object.values(json).map(item => item.url)
