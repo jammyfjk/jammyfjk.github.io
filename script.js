@@ -211,7 +211,7 @@ var posts;
 var currInd = 0;
 var currArr = []
 
-fetch(prompt("Enter private URL"))
+fetch("https://" + prompt("Enter private URL"))
     .then(response => response.json())
     .then(json => {
         posts = Object.values(json).map(item => item.url)
