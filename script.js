@@ -75,7 +75,7 @@ function addPost(ci) {
                 
             } else if (([".mp4", ".ogg", ".webm"]).includes(mediaLink.slice(mediaLink.lastIndexOf('.')))) {
                 var vid = document.createElement("video")
-                vid.autoplay = true
+                vid.setAttribute('playsinline', 'playsinline')
                 vid.loop = true
 		vid.playsinline = true
                 vid.innerHTML = `<source src="` + mediaLink + `">`
@@ -89,7 +89,7 @@ function addPost(ci) {
             } else if (mediaLink.toLowerCase().includes("imgur.com") && mediaLink.toLowerCase().includes(".gifv")) {
                 var vid = document.createElement("video")
                 vid.height = 500
-                vid.autoplay = true
+                vid.setAttribute('playsinline', 'playsinline')
                 vid.loop = true;
 		vid.playsinline = true
                 vid.innerHTML = `<source src="` + mediaLink.replace("gifv", "mp4") + `">`
