@@ -82,7 +82,7 @@ function addPost(ci) {
                 encloser.insertAdjacentElement("beforeend", vid)
             } else if (mediaLink.toLowerCase().includes("redgifs.com") || mediaLink.toLowerCase().includes("gfycat.com")) {
                 try {
-                    mediaLink = postData.reddit_video_preview.scrubber_media_url
+                    mediaLink = postData.preview.reddit_video_preview.scrubber_media_url
                     console.log(mediaLink)
                     fetch(mediaLink)
                     var vid = document.createElement("video")
