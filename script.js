@@ -56,19 +56,11 @@ function addPost(ci) {
             var encloser = document.createElement("div")
             encloser.id = "f" + ci
             encloser.title = title
-            encloser.onmousedown = elem => { 
-		    var timeLeft = 4; 
-		    elem.i = setInterval(() => {
-			    if (timeLeft <= 0) {
-				    clearInterval(elem.i)
-				    if (window.confirm(elem.title + "\n\nClick \"Ok\" to visit Reddit")) { 
-					    window.open(posts[ci], '_blank') 
-				    }
+            encloser.onclick = () => { 
+			    if (window.confirm(title + "\n\nClick \"Ok\" to visit Reddit")) { 
+				    window.open(posts[ci], '_blank') 
 			    }
-			    timeLeft -= 1
-		    }, 1000);
-		};
-	    encloser.onmouseup = elem => { clearInterval(elem.i) }
+	};
             if (([".apng", ".gif", ".ico", ".cur", ".jpg", ".jpeg", ".jfif", ".pjpeg", ".pjp", ".png", ".svg"]).includes(mediaLink.slice(mediaLink.lastIndexOf('.')))) {
                 try {
                  await fetch(mediaLink)
