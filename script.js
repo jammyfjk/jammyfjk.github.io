@@ -17,6 +17,25 @@ function waitForElm(selector) {
         });
     });
 }
+var decodeEntities = (function() {
+  // this prevents any overhead from creating the object each time
+  var element = document.createElement('div');
+
+  function decodeHTMLEntities (str) {
+    if(str && typeof str === 'string') {
+      // strip script/html tags
+      str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
+      str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
+      element.innerHTML = str;
+      str = element.textContent;
+      element.textContent = '';
+    }
+
+    return str;
+  }
+
+  return decodeHTMLEntities;
+})();
 
 function getImagesFromRedditGallery(postData) {
     // Fetch the gallery post's JSON data
@@ -66,7 +85,7 @@ function addPost(ci) {
                  await fetch(mediaLink)
                 .then(r=>{
                   if(r.redirected && r.url.toLowerCase().includes("removed")){
-                     mediaLink = postData.preview.images[0].source.url.replaceAll("&amp;", "&")
+                     mediaLink = decodeEntities(postData.preview.images[0].source.url)
                   } 
                 })
                } catch {
