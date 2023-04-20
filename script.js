@@ -69,7 +69,7 @@ function addPost(ci) {
         })
         .then(async data => {
             const postData = data[0].data.children[0].data;
-            let mediaLink = postData.url || postData.secure_media.reddit_video.fallback_url;
+            let mediaLink = decodeEntities(postData.url || postData.secure_media.reddit_video.fallback_url);
             const title = postData.title
             let s;
             var encloser = document.createElement("div")
@@ -136,7 +136,7 @@ function addPost(ci) {
                 encloser.insertAdjacentElement("beforeend", img)
             } else if (mediaLink.toLowerCase().includes("gallery")) {
                 var images = (getImagesFromRedditGallery(postData).map(item => {
-                    return item.replaceAll("&amp;", "&")
+                    return decodeEntities(item)
                 }));
                 var show = document.createElement("div")
                 show.id = "c" + ci + "-show"
