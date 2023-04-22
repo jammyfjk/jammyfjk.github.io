@@ -260,7 +260,7 @@ fetch("https://" + prompt("Enter private URL"))
         }
     })
 window.onscroll = () => {
-    currInd = (Math.round(window.scrollY * Math.floor(window.innerWidth / 500) / 750)) + 2 * Math.floor(window.innerWidth / 500)
+    currInd = (Math.round(window.scrollY * Math.floor(window.innerWidth / 500) / 750)) + 3 * Math.floor(window.innerWidth / 500)
       const ci = currInd
        console.log(ci)
       if (!currArr.includes(ci) && ci < posts.length) {
