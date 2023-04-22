@@ -250,7 +250,9 @@ var currArr = []
 fetch("https://" + prompt("Enter private URL"))
     .then(response => response.json())
     .then(json => {
-        posts = Object.values(json).map(item => item.url)
+        posts = Object.values(json).sort(function(x, y){
+	    return x.created_epoch - y.created_epoch;
+	}).map(item => item.url)
         for (currInd = 0; currInd < 4 * Math.floor(window.innerWidth / 500); currInd++) {
             currArr.push(currInd)
             const ci = currInd;
