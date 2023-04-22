@@ -103,7 +103,7 @@ function addPost(ci) {
 		        vid.autoplay = true
                 vid.innerHTML = `<source src="` + mediaLink + `">`
                 encloser.insertAdjacentElement("beforeend", vid)
-            } else if (mediaLink.toLowerCase().includes("redgifs.com") || mediaLink.toLowerCase().includes("gfycat.com") || postData.is_video) {
+            } else if (mediaLink.toLowerCase().includes("redgifs.com") || mediaLink.toLowerCase().includes("gfycat.com")) {
                 try {
                     mediaLink = decodeEntities(postData.preview.reddit_video_preview.fallback_url)
                     console.log(mediaLink)
@@ -122,7 +122,7 @@ function addPost(ci) {
                     iframe.src = mL.substring(0, mL.lastIndexOf("/")) + "/ifr" + mL.substring(mL.lastIndexOf("/"));
                     encloser.insertAdjacentElement("beforeend", iframe)
                 }
-            } else if (mediaLink.toLowerCase().includes("imgur.com") && mediaLink.toLowerCase().includes(".gifv")) {
+            } else if ((mediaLink.toLowerCase().includes("imgur.com") && mediaLink.toLowerCase().includes(".gifv")) || postData.is_video) {
                 var vid = document.createElement("video")
                 vid.height = 500
                 vid.setAttribute('playsinline', 'playsinline')
