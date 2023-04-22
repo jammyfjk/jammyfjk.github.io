@@ -80,7 +80,7 @@ function addPost(ci) {
 				    window.open(posts[ci], '_blank') 
 			    }
 	};
-            if (([".apng", ".gif", ".ico", ".cur", ".jpg", ".jpeg", ".jfif", ".pjpeg", ".pjp", ".png", ".svg"]).some(ftype => mediaLink.slice(mediaLink.lastIndexOf('.').includes(ftype)))) {
+            if (([".apng", ".gif", ".ico", ".cur", ".jpg", ".jpeg", ".jfif", ".pjpeg", ".pjp", ".png", ".svg"]).some(ftype => mediaLink.slice(mediaLink.lastIndexOf('.').includes(ftype).includes(ftype)))) {
                 try {
                  await fetch(mediaLink)
                 .then(r=>{
@@ -96,7 +96,7 @@ function addPost(ci) {
                 encloser.insertAdjacentElement("beforeend", img)
                }
                 
-            } else if (([".mp4", ".ogg", ".webm"]).some(ftype => mediaLink.slice(mediaLink.lastIndexOf('.').includes(ftype)))) {
+            } else if (([".mp4", ".ogg", ".webm"]).some(ftype => mediaLink.slice(mediaLink.lastIndexOf('.')).includes(ftype))) {
                 var vid = document.createElement("video")
                 vid.setAttribute('playsinline', 'playsinline')
                 vid.loop = true
