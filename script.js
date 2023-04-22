@@ -103,9 +103,9 @@ function addPost(ci) {
 		        vid.autoplay = true
                 vid.innerHTML = `<source src="` + mediaLink + `">`
                 encloser.insertAdjacentElement("beforeend", vid)
-            } else if (mediaLink.toLowerCase().includes("redgifs.com") || mediaLink.toLowerCase().includes("gfycat.com")) {
+            } else if (mediaLink.toLowerCase().includes("redgifs.com") || mediaLink.toLowerCase().includes("gfycat.com") || postData.is_video) {
                 try {
-                    mediaLink = postData.preview.reddit_video_preview.fallback_url
+                    mediaLink = decodeEntities(postData.preview.reddit_video_preview.fallback_url)
                     console.log(mediaLink)
                     fetch(mediaLink)
                     var vid = document.createElement("video")
