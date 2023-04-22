@@ -75,11 +75,6 @@ function addPost(ci) {
             var encloser = document.createElement("div")
             encloser.id = "f" + ci
             encloser.title = title
-            encloser.onclick = () => { 
-			    if (window.confirm(title + "\n\nClick \"Ok\" to visit Reddit")) { 
-				    window.open(posts[ci], '_blank') 
-			    }
-	};
             if ((mediaLink.toLowerCase().includes("imgur.com") && mediaLink.toLowerCase().includes(".gifv"))) {
                 var vid = document.createElement("video")
                 vid.height = 500
@@ -228,6 +223,9 @@ function addPost(ci) {
           if (s != null) {
             encloser.insertAdjacentElement("beforeend", s)
           }
+          var link = document.createElement('a')
+          link.href = posts[ci]
+          encloser.insertAdjacentElement("beforeend", link)
         })
 }
 
