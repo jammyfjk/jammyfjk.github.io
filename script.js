@@ -80,7 +80,7 @@ function addPost(ci) {
 				    window.open(posts[ci], '_blank') 
 			    }
 	};
-            if (([".apng", ".gif", ".ico", ".cur", ".jpg", ".jpeg", ".jfif", ".pjpeg", ".pjp", ".png", ".svg"]).some(ftype => mediaLink.slice(mediaLink.lastIndexOf('.').includes(ftype)) {
+            if (([".apng", ".gif", ".ico", ".cur", ".jpg", ".jpeg", ".jfif", ".pjpeg", ".pjp", ".png", ".svg"]).some(ftype => mediaLink.slice(mediaLink.lastIndexOf('.').includes(ftype)))) {
                 try {
                  await fetch(mediaLink)
                 .then(r=>{
@@ -96,7 +96,7 @@ function addPost(ci) {
                 encloser.insertAdjacentElement("beforeend", img)
                }
                 
-            } else if (([".mp4", ".ogg", ".webm"]).some(ftype => mediaLink.slice(mediaLink.lastIndexOf('.').includes(ftype)) {
+            } else if (([".mp4", ".ogg", ".webm"]).some(ftype => mediaLink.slice(mediaLink.lastIndexOf('.').includes(ftype)))) {
                 var vid = document.createElement("video")
                 vid.setAttribute('playsinline', 'playsinline')
                 vid.loop = true
@@ -232,13 +232,7 @@ async function shufflePosts() {
     for (currInd = 0; currInd < 4 * Math.round(window.innerWidth / 500); currInd++) {
         currArr.push(currInd)
         const ci = currInd;
-        /*var elem = `<iframe loading="lazy" id="f` + currInd + `" src="https://embed.reddit.com/` + posts[currInd].split("https://www.reddit.com/")[1] + `/?embed=true&amp;ref_source=embed&amp;ref=share&amp;utm_medium=widgets&amp;utm_source=embedv2&amp;theme=dark" scrolling="no" allowfullscreen="true" sandbox="allow-scripts allow-same-origin allow-popups" style="border: medium none; max-width: 100%; border-radius: 8px; display: block; margin: 0px auto;" width="640px" height="500"></iframe>`
-           document.querySelector('#posts').insertAdjacentHTML("beforeend", elem)*/
         await addPost(ci);
-
-        // Add the iframe to your webpage
-
-
     }
 
 }
