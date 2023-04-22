@@ -69,7 +69,7 @@ function addPost(ci) {
         })
         .then(async data => {
             const postData = data[0].data.children[0].data;
-            let mediaLink = decodeEntities(postData.url || postData.secure_media.reddit_video.fallback_url);
+            let mediaLink = decodeEntities(postData.secure_media.reddit_video.fallback_url || postData.url);
             const title = postData.title
             let s;
             var encloser = document.createElement("div")
