@@ -72,6 +72,7 @@ function addPost(ci) {
             let mediaLink = postData.is_video ? decodeEntities(postData.secure_media.reddit_video.fallback_url) : decodeEntities(postData.url);
             const title = postData.title
             let s;
+            let linkB;
             var encloser = document.createElement("div")
             encloser.id = "f" + ci
             encloser.title = title
@@ -81,7 +82,15 @@ function addPost(ci) {
                 vid.setAttribute('playsinline', 'playsinline')
                 vid.loop = true;
                 vid.autoplay = true
-                vid.innerHTML = `<source src="` + mediaLink.replace("gifv", "mp4") + `">`
+                vid.src = mediaLink.replace("gifv", "mp4")
+                linkB = document.createElement("button")
+                linkB.onclick = () => {
+                    if (vid.paused) {
+                        vid.play()
+                    } else {
+                        vid.pause()
+                    }
+                }
                 encloser.insertAdjacentElement("beforeend", vid)
             }
             else if (([".mp4", ".ogg", ".webm"]).some(ftype => mediaLink.slice(mediaLink.lastIndexOf('.')).includes(ftype))) {
@@ -89,7 +98,15 @@ function addPost(ci) {
                 vid.setAttribute('playsinline', 'playsinline')
                 vid.loop = true
 		        vid.autoplay = true
-                vid.innerHTML = `<source src="` + mediaLink + `">`
+                vid.src = mediaLink
+                linkB = document.createElement("button")
+                linkB.onclick = () => {
+                    if (vid.paused) {
+                        vid.play()
+                    } else {
+                        vid.pause()
+                    }
+                }
                 encloser.insertAdjacentElement("beforeend", vid)
             } else if (mediaLink.toLowerCase().includes("redgifs.com") || mediaLink.toLowerCase().includes("gfycat.com")) {
                 try {
@@ -99,7 +116,15 @@ function addPost(ci) {
                     vid.setAttribute('playsinline', 'playsinline')
                     vid.loop = true
                     vid.autoplay = true
-                    vid.innerHTML = `<source src="` + mediaLink + `">`
+                    vid.src = mediaLink
+                    linkB = document.createElement("button")
+                    linkB.onclick = () => {
+                        if (vid.paused) {
+                            vid.play()
+                        } else {
+                            vid.pause()
+                        }
+                    }
                     encloser.insertAdjacentElement("beforeend", vid)
                 }
                 catch {
@@ -228,6 +253,9 @@ function addPost(ci) {
           var linkI = document.createElement('a')
           linkI.href = posts[ci]
           linkI.innerHTML = title
+          if (linkB != null) {
+            link.insertAdjacentElement("beforeend", linkB)
+          }
           link.insertAdjacentElement("afterbegin", linkI)
           encloser.insertAdjacentElement("beforeend", link)
         })
