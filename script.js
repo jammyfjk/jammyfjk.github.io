@@ -223,8 +223,12 @@ function addPost(ci) {
           if (s != null) {
             encloser.insertAdjacentElement("beforeend", s)
           }
-          var link = document.createElement('a')
-          link.href = posts[ci]
+          var link = document.createElement('div')
+          link.classList.add("a")
+          var linkI = document.createElement('a')
+          linkI.href = posts[ci]
+          linkI.innerHTML = title
+          link.insertAdjacentElement("afterbegin", linkI)
           encloser.insertAdjacentElement("beforeend", link)
         })
 }
