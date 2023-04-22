@@ -130,8 +130,13 @@ function addPost(ci) {
                 img.src = mediaLink;
                 img.onload = () => {
                     if (img.naturalWidth == 0) {
+                        console.log("Error occured")
                         encloser.style.display = "none"
                     } 
+                }
+                img.onerror = () => {
+                    console.log("Error occured: " + mediaLink)
+                    encloser.style.display = "none"
                 }
                 encloser.insertAdjacentElement("beforeend", img)
                }
@@ -141,8 +146,13 @@ function addPost(ci) {
                 img.src = mediaLink.substring(0, mediaLink.indexOf("imgur.com")) + "i." + mediaLink.substring(mediaLink.indexOf("imgur.com")) + ".jpg";
                 img.onload = () => {
                     if (img.naturalWidth == 0) {
+                        console.log("Error occured")
                         encloser.style.display = "none"
                     } 
+                }
+                img.onerror = () => {
+                    console.log("Error occured: " + mediaLink)
+                    encloser.style.display = "none"
                 }
                 encloser.insertAdjacentElement("beforeend", img)
             } else if (mediaLink.toLowerCase().includes("gallery")) {
