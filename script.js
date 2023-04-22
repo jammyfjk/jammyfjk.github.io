@@ -128,12 +128,22 @@ function addPost(ci) {
                } finally {
                  var img = document.createElement('img')
                 img.src = mediaLink;
+                img.onload = () => {
+                    if (img.naturalWidth == 0) {
+                        encloser.style.display = "none"
+                    } 
+                }
                 encloser.insertAdjacentElement("beforeend", img)
                }
                 
             } else if (mediaLink.toLowerCase().includes("imgur.com") && !mediaLink.toLowerCase().includes("i.")) {
                 var img = document.createElement('img')
                 img.src = mediaLink.substring(0, mediaLink.indexOf("imgur.com")) + "i." + mediaLink.substring(mediaLink.indexOf("imgur.com")) + ".jpg";
+                img.onload = () => {
+                    if (img.naturalWidth == 0) {
+                        encloser.style.display = "none"
+                    } 
+                }
                 encloser.insertAdjacentElement("beforeend", img)
             } else if (mediaLink.toLowerCase().includes("gallery")) {
                 var images = (getImagesFromRedditGallery(postData).map(item => {
