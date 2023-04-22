@@ -80,23 +80,16 @@ function addPost(ci) {
 				    window.open(posts[ci], '_blank') 
 			    }
 	};
-            if (([".apng", ".gif", ".ico", ".cur", ".jpg", ".jpeg", ".jfif", ".pjpeg", ".pjp", ".png", ".svg"]).some(ftype => mediaLink.slice(mediaLink.lastIndexOf('.')).includes(ftype))) {
-                try {
-                 await fetch(mediaLink)
-                .then(r=>{
-                  if(r.redirected && r.url.toLowerCase().includes("removed")){
-                     mediaLink = decodeEntities(postData.preview.images[0].source.url)
-                  } 
-                })
-               } catch {
-                 
-               } finally {
-                 var img = document.createElement('img')
-                img.src = mediaLink;
-                encloser.insertAdjacentElement("beforeend", img)
-               }
-                
-            } else if (([".mp4", ".ogg", ".webm"]).some(ftype => mediaLink.slice(mediaLink.lastIndexOf('.')).includes(ftype))) {
+            if ((mediaLink.toLowerCase().includes("imgur.com") && mediaLink.toLowerCase().includes(".gifv"))) {
+                var vid = document.createElement("video")
+                vid.height = 500
+                vid.setAttribute('playsinline', 'playsinline')
+                vid.loop = true;
+                vid.autoplay = true
+                vid.innerHTML = `<source src="` + mediaLink.replace("gifv", "mp4") + `">`
+                encloser.insertAdjacentElement("beforeend", vid)
+            }
+            else if (([".mp4", ".ogg", ".webm"]).some(ftype => mediaLink.slice(mediaLink.lastIndexOf('.')).includes(ftype))) {
                 var vid = document.createElement("video")
                 vid.setAttribute('playsinline', 'playsinline')
                 vid.loop = true
@@ -122,14 +115,22 @@ function addPost(ci) {
                     iframe.src = mL.substring(0, mL.lastIndexOf("/")) + "/ifr" + mL.substring(mL.lastIndexOf("/"));
                     encloser.insertAdjacentElement("beforeend", iframe)
                 }
-            } else if ((mediaLink.toLowerCase().includes("imgur.com") && mediaLink.toLowerCase().includes(".gifv"))) {
-                var vid = document.createElement("video")
-                vid.height = 500
-                vid.setAttribute('playsinline', 'playsinline')
-                vid.loop = true;
-		        vid.autoplay = true
-                vid.innerHTML = `<source src="` + mediaLink.replace("gifv", "mp4") + `">`
-                encloser.insertAdjacentElement("beforeend", vid)
+            } else if (([".apng", ".gif", ".ico", ".cur", ".jpg", ".jpeg", ".jfif", ".pjpeg", ".pjp", ".png", ".svg"]).some(ftype => mediaLink.slice(mediaLink.lastIndexOf('.')).includes(ftype))) {
+                try {
+                 await fetch(mediaLink)
+                .then(r=>{
+                  if(r.redirected && r.url.toLowerCase().includes("removed")){
+                     mediaLink = decodeEntities(postData.preview.images[0].source.url)
+                  } 
+                })
+               } catch {
+                 
+               } finally {
+                 var img = document.createElement('img')
+                img.src = mediaLink;
+                encloser.insertAdjacentElement("beforeend", img)
+               }
+                
             } else if (mediaLink.toLowerCase().includes("imgur.com") && !mediaLink.toLowerCase().includes("i.")) {
                 var img = document.createElement('img')
                 img.src = mediaLink.substring(0, mediaLink.indexOf("imgur.com")) + "i." + mediaLink.substring(mediaLink.indexOf("imgur.com")) + ".jpg";
