@@ -80,7 +80,7 @@ function addPost(ci) {
 				    window.open(posts[ci], '_blank') 
 			    }
 	};
-            if (([".apng", ".gif", ".ico", ".cur", ".jpg", ".jpeg", ".jfif", ".pjpeg", ".pjp", ".png", ".svg"]).some(ftype => mediaLink.slice(mediaLink.lastIndexOf('.').includes(ftype).includes(ftype)))) {
+            if (([".apng", ".gif", ".ico", ".cur", ".jpg", ".jpeg", ".jfif", ".pjpeg", ".pjp", ".png", ".svg"]).some(ftype => mediaLink.slice(mediaLink.lastIndexOf('.')).includes(ftype))) {
                 try {
                  await fetch(mediaLink)
                 .then(r=>{
