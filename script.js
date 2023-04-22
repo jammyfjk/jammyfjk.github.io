@@ -87,10 +87,13 @@ function addPost(ci) {
                 linkB.onclick = () => {
                     if (vid.paused) {
                         vid.play()
+                        linkB.innerHTML = "▶"
                     } else {
                         vid.pause()
+                        linkB.innerHTML = "⏸"
                     }
                 }
+                linkB.innerHTML = "▶"
                 encloser.insertAdjacentElement("beforeend", vid)
             }
             else if (([".mp4", ".ogg", ".webm"]).some(ftype => mediaLink.slice(mediaLink.lastIndexOf('.')).includes(ftype))) {
@@ -103,10 +106,13 @@ function addPost(ci) {
                 linkB.onclick = () => {
                     if (vid.paused) {
                         vid.play()
+                        linkB.innerHTML = "▶"
                     } else {
                         vid.pause()
+                        linkB.innerHTML = "⏸"
                     }
                 }
+                linkB.innerHTML = "▶"
                 encloser.insertAdjacentElement("beforeend", vid)
             } else if (mediaLink.toLowerCase().includes("redgifs.com") || mediaLink.toLowerCase().includes("gfycat.com")) {
                 try {
@@ -121,10 +127,13 @@ function addPost(ci) {
                     linkB.onclick = () => {
                         if (vid.paused) {
                             vid.play()
+                            linkB.innerHTML = "▶"
                         } else {
                             vid.pause()
+                            linkB.innerHTML = "⏸"
                         }
                     }
+                    linkB.innerHTML = "▶"
                     encloser.insertAdjacentElement("beforeend", vid)
                 }
                 catch {
