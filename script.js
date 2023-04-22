@@ -99,7 +99,6 @@ function addPost(ci) {
             } else if (mediaLink.toLowerCase().includes("redgifs.com") || mediaLink.toLowerCase().includes("gfycat.com")) {
                 try {
                     mediaLink = decodeEntities(postData.preview.reddit_video_preview.fallback_url)
-                    console.log(mediaLink)
                     fetch(mediaLink)
                     var vid = document.createElement("video")
                     vid.setAttribute('playsinline', 'playsinline')
@@ -130,12 +129,12 @@ function addPost(ci) {
                 img.src = mediaLink;
                 img.onload = () => {
                     if (img.naturalWidth == 0) {
-                        console.log("Error occured")
+                        console.error("Error occured with image: " + mediaLink)
                         encloser.style.display = "none"
                     } 
                 }
                 img.onerror = () => {
-                    console.log("Error occured: " + mediaLink)
+                    console.error("Error occured with image: " + mediaLink)
                     encloser.style.display = "none"
                 }
                 encloser.insertAdjacentElement("beforeend", img)
@@ -146,12 +145,12 @@ function addPost(ci) {
                 img.src = mediaLink.substring(0, mediaLink.indexOf("imgur.com")) + "i." + mediaLink.substring(mediaLink.indexOf("imgur.com")) + ".jpg";
                 img.onload = () => {
                     if (img.naturalWidth == 0) {
-                        console.log("Error occured")
+                        console.error("Error occured with image: " + mediaLink)
                         encloser.style.display = "none"
                     } 
                 }
                 img.onerror = () => {
-                    console.log("Error occured: " + mediaLink)
+                    console.error("Error occured with image: " + mediaLink)
                     encloser.style.display = "none"
                 }
                 encloser.insertAdjacentElement("beforeend", img)
@@ -277,7 +276,6 @@ fetch("https://" + prompt("Enter private URL"))
 window.onscroll = () => {
     currInd = (Math.round(window.scrollY * Math.floor(window.innerWidth / 500) / 750)) + 3 * Math.floor(window.innerWidth / 500)
       const ci = currInd
-       console.log(ci)
       if (!currArr.includes(ci) && ci < posts.length) {
           currArr.push(ci)
           addPost(currInd);
