@@ -299,8 +299,13 @@ var posts;
 
 var currInd = 0;
 var currArr = []
-
-fetch("https://" + prompt("Enter private URL"))
+var url = prompt("Enter private URL")
+try {
+	new URL(url)
+} catch (e) {
+	url = "https://" + url
+}
+fetch(url)
     .then(response => response.json())
     .then(json => {
         posts = Object.values(json).sort(function(x, y){
