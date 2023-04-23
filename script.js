@@ -61,7 +61,7 @@ function addPost(ci) {
             encloser.id = "f" + ci
             encloser.title = title
             encloser.onclick = () => {
-                document.querySelector("#f" + ci + " > .a").style.opacity = document.querySelector("#f" + c + " > .a").style.opacity == 1 ? 0 : 1
+                document.querySelector("#f" + ci + " > .a").style.opacity = document.querySelector("#f" + ci + " > .a").style.opacity == 1 ? 0 : 1
             }
             if ((mediaLink.toLowerCase().includes("imgur.com") && mediaLink.toLowerCase().includes(".gifv"))) {
                 var vid = document.createElement("video")
