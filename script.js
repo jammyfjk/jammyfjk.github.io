@@ -1,22 +1,3 @@
-function waitForElm(selector) {
-    return new Promise(resolve => {
-        if (document.querySelector(selector)) {
-            return resolve(document.querySelector(selector));
-        }
-
-        const observer = new MutationObserver(mutations => {
-            if (document.querySelector(selector)) {
-                resolve(document.querySelector(selector));
-                observer.disconnect();
-            }
-        });
-
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-    });
-}
 var decodeEntities = (function() {
   // this prevents any overhead from creating the object each time
   var element = document.createElement('div');
@@ -56,7 +37,7 @@ function getImagesFromRedditGallery(postData) {
 }
 
 function addPost(ci) {
-    fetch(posts[currInd] + ".json")
+    fetch(posts[ci] + ".json")
         .then(response => {
             if (!response.ok) {
                 // make the promise be rejected if we didn't get a 2xx response
@@ -70,6 +51,9 @@ function addPost(ci) {
         .then(async data => {
             const postData = data[0].data.children[0].data;
             let mediaLink = postData.is_video ? decodeEntities(postData.secure_media.reddit_video.fallback_url) : decodeEntities(postData.url);
+	    if (mediaLink == "" || mediaLink == null || mediaLink == undefined) {
+	    	throw new Error("No media: " +  posts[ci])
+	    }
             const title = postData.title
             let s;
             let linkB;
@@ -158,12 +142,12 @@ function addPost(ci) {
                 img.src = mediaLink;
                 img.onload = () => {
                     if (img.naturalWidth == 0) {
-                        console.error("Error occured with image: " + mediaLink)
+                        throw new Error("Error occured with image: " + mediaLink)
                         encloser.style.display = "none"
                     } 
                 }
                 img.onerror = () => {
-                    console.error("Error occured with image: " + mediaLink)
+                    throw new Error("Error occured with image: " + mediaLink)
                     encloser.style.display = "none"
                 }
                 encloser.insertAdjacentElement("beforeend", img)
@@ -174,12 +158,12 @@ function addPost(ci) {
                 img.src = mediaLink.substring(0, mediaLink.indexOf("imgur.com")) + "i." + mediaLink.substring(mediaLink.indexOf("imgur.com")) + ".jpg";
                 img.onload = () => {
                     if (img.naturalWidth == 0) {
-                        console.error("Error occured with image: " + mediaLink)
+                        throw new Error("Error occured with image: " + mediaLink)
                         encloser.style.display = "none"
                     } 
                 }
                 img.onerror = () => {
-                    console.error("Error occured with image: " + mediaLink)
+                    throw new Error("Error occured with image: " + mediaLink)
                     encloser.style.display = "none"
                 }
                 encloser.insertAdjacentElement("beforeend", img)
