@@ -310,7 +310,7 @@ try {
 		new URL(url)
 		getPosts(url)
 	} catch {
-		posts = ["https://www.reddit.com/r/loadingicon/random/.json"]
+		posts = ["https://www.reddit.com/r/loadingicon/random/"]
 		addPost(0)
 		document.querySelector("body > button").innerHTML = "Sorry, no posts found. Reload to set a new URL"
 		document.querySelector("body > button").disabled = true
