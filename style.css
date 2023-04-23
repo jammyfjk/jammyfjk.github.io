@@ -55,6 +55,10 @@ button {
   opacity: 0;
   pointer-events: none
 }
+#posts > * > iframe {
+  padding: 50px 0;
+  box-sizing: border-box;
+}
 #posts > * > .a > a {
   font-family: sans;
   color: white;
@@ -77,9 +81,6 @@ button {
   font-size: 20px;
   pointer-events: all;
   padding: 10px
-}
-#posts > *:hover > .a {
-  opacity: 1;
 }
 .container {
   position: relative;
