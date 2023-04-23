@@ -304,13 +304,20 @@ function getPosts(url) {
 	fetch(url)
 	    .then(response => response.json())
 	    .then(json => {
-		posts = Object.values(json).sort(function(x, y){
-		    return y.created_epoch - x.created_epoch;
-		}).map(item => item.url)
-		for (currInd = 0; currInd < 4 * Math.floor(window.innerWidth / 500); currInd++) {
-		    currArr.push(currInd)
-		    const ci = currInd;
-		    addPost(ci);
+		try {
+			posts = Object.values(json).sort(function(x, y){
+			    return y.created_epoch - x.created_epoch;
+			}).map(item => item.url)
+			for (currInd = 0; currInd < 4 * Math.floor(window.innerWidth / 500); currInd++) {
+			    currArr.push(currInd)
+			    const ci = currInd;
+			    addPost(ci);
+			}
+		} catch {
+			posts = ["https://www.reddit.com/r/loadingicon/random/"]
+			addPost(0)
+			document.querySelector("body > button").innerHTML = "Sorry, no posts found. Reload to set a new URL"
+			document.querySelector("body > button").disabled = true
 		}
 	    })
 }
