@@ -67,8 +67,9 @@ function addPost(ci) {
                 var vid = document.createElement("video")
                 vid.height = 500
                 vid.setAttribute('playsinline', 'playsinline')
-                vid.loop = true;
+                vid.loop = true
                 vid.autoplay = true
+                vid.muted = true
                 vid.src = mediaLink.replace("gifv", "mp4")
                 linkB = document.createElement("button")
                 linkB.onclick = e => {
@@ -89,6 +90,7 @@ function addPost(ci) {
                 vid.setAttribute('playsinline', 'playsinline')
                 vid.loop = true
 		        vid.autoplay = true
+                vid.muted = true
                 vid.src = mediaLink
                 linkB = document.createElement("button")
                 linkB.onclick = e => {
@@ -111,6 +113,7 @@ function addPost(ci) {
                     vid.setAttribute('playsinline', 'playsinline')
                     vid.loop = true
                     vid.autoplay = true
+                    vid.muted = true
                     vid.src = mediaLink
                     linkB = document.createElement("button")
                     linkB.onclick = () => {
@@ -147,13 +150,13 @@ function addPost(ci) {
                 img.src = mediaLink;
                 img.onload = () => {
                     if (img.naturalWidth == 0) {
-                        throw new Error("Error occured with image: " + mediaLink)
                         encloser.style.display = "none"
+                        throw new Error("Error occured with image: " + mediaLink)
                     } 
                 }
                 img.onerror = () => {
-                    throw new Error("Error occured with image: " + mediaLink)
                     encloser.style.display = "none"
+                    throw new Error("Error occured with image: " + mediaLink)
                 }
                 encloser.insertAdjacentElement("beforeend", img)
                }
@@ -163,13 +166,13 @@ function addPost(ci) {
                 img.src = mediaLink.substring(0, mediaLink.indexOf("imgur.com")) + "i." + mediaLink.substring(mediaLink.indexOf("imgur.com")) + ".jpg";
                 img.onload = () => {
                     if (img.naturalWidth == 0) {
-                        throw new Error("Error occured with image: " + mediaLink)
                         encloser.style.display = "none"
+                        throw new Error("Error occured with image: " + mediaLink)
                     } 
                 }
                 img.onerror = () => {
-                    throw new Error("Error occured with image: " + mediaLink)
                     encloser.style.display = "none"
+                    throw new Error("Error occured with image: " + mediaLink)
                 }
                 encloser.insertAdjacentElement("beforeend", img)
             } else if (mediaLink.toLowerCase().includes("gallery")) {
