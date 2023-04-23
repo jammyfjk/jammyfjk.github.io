@@ -19,12 +19,14 @@ html, body {
 
 button {
   width: calc(100vw - 80px);
-  height: 40px;
+  height: fit-content;
   font-size: 30px;
   background-color: #0b1416;
   border: 1px solid #3c4345;
   border-radius: 10px;
-  margin: 10px 40px 0 40px
+  margin: 10px 40px 0 40px;
+  padding: 10px 0;
+  box-sizing: border-box;
 }
 #posts > * {
   height: 75vh;
@@ -62,8 +64,8 @@ button {
   pointer-events: all;
 }
 #posts > * > .a > button {
-  width: 40px;
-  height: 40px;
+  width: fit-content;
+  height: fit-content;
   background-color: white;
   border: none;
   border-radius: 5px;
@@ -74,6 +76,7 @@ button {
   color: black;
   font-size: 20px;
   pointer-events: all;
+  padding: 10px
 }
 #posts > *:hover > .a {
   opacity: 1;
