@@ -299,29 +299,42 @@ var posts;
 
 var currInd = 0;
 var currArr = []
-var url = prompt("Enter private URL")
+var url = prompt("Enter the URL to your Eternity saved posts")
 try {
 	new URL(url)
+	getPosts(url)
+	
 } catch (e) {
 	url = "https://" + url
+	try {
+		new URL(url)
+		getPosts(url)
+	} catch {
+		posts = ["https://www.reddit.com/r/loadingicon/random/.json"]
+		addPost(0)
+		document.querySelector("body > button").innerHTML = "Sorry, no posts found. Reload to set a new URL"
+		document.querySelector("body > button").disabled = true
+	}
 }
-fetch(url)
-    .then(response => response.json())
-    .then(json => {
-        posts = Object.values(json).sort(function(x, y){
-	    return y.created_epoch - x.created_epoch;
-	}).map(item => item.url)
-        for (currInd = 0; currInd < 4 * Math.floor(window.innerWidth / 500); currInd++) {
-            currArr.push(currInd)
-            const ci = currInd;
-            addPost(ci);
-        }
-    })
+function getPosts(url) {
+	fetch(url)
+	    .then(response => response.json())
+	    .then(json => {
+		posts = Object.values(json).sort(function(x, y){
+		    return y.created_epoch - x.created_epoch;
+		}).map(item => item.url)
+		for (currInd = 0; currInd < 4 * Math.floor(window.innerWidth / 500); currInd++) {
+		    currArr.push(currInd)
+		    const ci = currInd;
+		    addPost(ci);
+		}
+	    })
+}
 window.onscroll = () => {
     currInd = (Math.round(window.scrollY * Math.floor(window.innerWidth / 500) / 750)) + 3 * Math.floor(window.innerWidth / 500)
       const ci = currInd
       if (!currArr.includes(ci) && ci < posts.length) {
-          currArr.push(ci)
-          addPost(currInd);
+	  currArr.push(ci)
+	  addPost(currInd);
       }
 }
