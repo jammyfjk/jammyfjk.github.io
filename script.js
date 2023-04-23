@@ -51,9 +51,9 @@ function addPost(ci) {
         .then(async data => {
             const postData = data[0].data.children[0].data;
             let mediaLink = postData.is_video ? decodeEntities(postData.secure_media.reddit_video.fallback_url) : decodeEntities(postData.url);
-	    if (mediaLink == "" || mediaLink == null || mediaLink == undefined) {
-	    	throw new Error("No media: " +  posts[ci])
-	    }
+            if (mediaLink == "" || mediaLink == null || mediaLink == undefined) {
+                throw new Error("No media: " +  posts[ci])
+            }
             const title = postData.title
             let s;
             let linkB;
