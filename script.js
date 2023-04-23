@@ -249,7 +249,7 @@ function addPost(ci) {
           var link = document.createElement('div')
           link.classList.add("a")
           var linkI = document.createElement('a')
-          linkI.href = posts[ci]
+          linkI.href = "https://www.reddit.com" + postData.permalink
           linkI.innerHTML = title
           if (linkB != null) {
             link.insertAdjacentElement("beforeend", linkB)
