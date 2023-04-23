@@ -60,6 +60,9 @@ function addPost(ci) {
             var encloser = document.createElement("div")
             encloser.id = "f" + ci
             encloser.title = title
+	    encloser.onclick = () => {
+		    this.children[1].style.opacity = this.children[1].style.opacity == 1 ? 0 : 1
+	    }
             if ((mediaLink.toLowerCase().includes("imgur.com") && mediaLink.toLowerCase().includes(".gifv"))) {
                 var vid = document.createElement("video")
                 vid.height = 500
@@ -68,7 +71,7 @@ function addPost(ci) {
                 vid.autoplay = true
                 vid.src = mediaLink.replace("gifv", "mp4")
                 linkB = document.createElement("button")
-                linkB.onclick = () => {
+                linkB.onclick = e => {
                     if (vid.paused) {
                         vid.play()
                         linkB.innerHTML = "▶"
@@ -76,6 +79,7 @@ function addPost(ci) {
                         vid.pause()
                         linkB.innerHTML = "⏸"
                     }
+			e.stopPropagation(); 
                 }
                 linkB.innerHTML = "▶"
                 encloser.insertAdjacentElement("beforeend", vid)
