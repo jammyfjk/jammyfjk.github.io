@@ -105,7 +105,7 @@ function addPost(ci) {
                 }
                 linkB.innerHTML = "▶"
                 encloser.insertAdjacentElement("beforeend", vid)
-            } else if (mediaLink.toLowerCase().includes("redgifs.com") || mediaLink.toLowerCase().includes("gfycat.com")) {
+            } else if ((mediaLink.toLowerCase().includes("redgifs.com") || mediaLink.toLowerCase().includes("gfycat.com")) && !(([".apng", ".gif", ".ico", ".cur", ".jpg", ".jpeg", ".jfif", ".pjpeg", ".pjp", ".png", ".svg"]).some(ftype => mediaLink.slice(mediaLink.lastIndexOf('.')).includes(ftype)))) {
                 try {
                     mediaLink = decodeEntities(postData.preview.reddit_video_preview.fallback_url)
                     fetch(mediaLink)
