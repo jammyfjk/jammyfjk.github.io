@@ -136,10 +136,13 @@ function addPost(ci) {
                     encloser.insertAdjacentElement("beforeend", iframe)
                 }
             } else if (([".apng", ".gif", ".ico", ".cur", ".jpg", ".jpeg", ".jfif", ".pjpeg", ".pjp", ".png", ".svg"]).some(ftype => mediaLink.slice(mediaLink.lastIndexOf('.')).includes(ftype))) {
+		    if (mediaLink.toLowerCase().includes("redgifs.com") || mediaLink.toLowerCase().includes("gfycat.com")) {
+			mediaLink = decodeEntities(postData.preview.images[0].source.url)
+		    }
                 try {
                  await fetch(mediaLink)
                 .then(r=>{
-                  if((r.redirected && r.url.toLowerCase().includes("removed")) || (mediaLink.toLowerCase().includes("redgifs.com") || mediaLink.toLowerCase().includes("gfycat.com"))){
+                  if(r.redirected && r.url.toLowerCase().includes("removed")){
                      mediaLink = decodeEntities(postData.preview.images[0].source.url)
                   } 
                 })
