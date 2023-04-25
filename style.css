@@ -67,6 +67,12 @@ button {
   grid-row: 1 / span 1;
   pointer-events: all;
 }
+#posts > * > .a > a > span {
+  color: lightgrey;
+}
+#posts > * > .a > a > b {
+  font-size: 25px;
+}
 #posts > * > .a > button {
   width: fit-content;
   height: fit-content;

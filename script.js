@@ -256,7 +256,12 @@ function addPost(ci) {
           link.classList.add("a")
           var linkI = document.createElement('a')
           linkI.href = "https://www.reddit.com" + postData.permalink
-          linkI.innerHTML = title
+          var linkName = document.createElement('b')
+          linkName.innerHTML = title
+          linkI.insertAdjacentElement("afterbegin", linkName)
+          var linkSub = document.createElement('span')
+          linkSub.innerHTML = postData.subreddit_name_prefixed
+          linkI.insertAdjacentElement("beforeend", linkSub)
           if (linkB != null) {
             link.insertAdjacentElement("beforeend", linkB)
           }
