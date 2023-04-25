@@ -259,6 +259,7 @@ function addPost(ci) {
           var linkName = document.createElement('b')
           linkName.innerHTML = title
           linkI.insertAdjacentElement("afterbegin", linkName)
+          linkI.insertAdjacentElement("afterbegin", document.createElement('br'))
           var linkSub = document.createElement('span')
           linkSub.innerHTML = postData.subreddit_name_prefixed
           linkI.insertAdjacentElement("beforeend", linkSub)
