@@ -62,7 +62,9 @@ function addPost(ci) {
             encloser.title = title
             encloser.onclick = () => {
                 document.querySelector("#f" + ci + " > .a").style.opacity = document.querySelector("#f" + ci + " > .a").style.opacity == 1 ? 0 : 1
-                document.querySelector("#f" + ci + " > .a").style.pointerEvents = document.querySelector("#f" + ci + " > .a").style.pointerEvents == "all" ? "none" : "all"
+                document.querySelectorAll("#f" + ci + " > .a > *").forEach((it) => {
+                    it.style.pointerEvents = it.style.pointerEvents == "all" ? "none" : "all"
+                })
             }
             if ((mediaLink.toLowerCase().includes("imgur.com") && mediaLink.toLowerCase().includes(".gifv"))) {
                 var vid = document.createElement("video")

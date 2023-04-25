@@ -65,7 +65,7 @@ button {
   text-decoration: none;
   align-self: end;
   grid-row: 1 / span 1;
-  pointer-events: all;
+  pointer-events: none;
 }
 #posts > * > .a > a > span {
   color: lightgrey;
@@ -85,7 +85,7 @@ button {
   grid-row: 1 / span 1;
   color: black;
   font-size: 20px;
-  pointer-events: all;
+  pointer-events: none;
   padding: 10px
 }
 .container {
