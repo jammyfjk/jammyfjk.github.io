@@ -62,6 +62,7 @@ function addPost(ci) {
             encloser.title = title
             encloser.onclick = () => {
                 document.querySelector("#f" + ci + " > .a").style.opacity = document.querySelector("#f" + ci + " > .a").style.opacity == 1 ? 0 : 1
+                document.querySelector("#f" + ci + " > .a").style.pointerEvents = document.querySelector("#f" + ci + " > .a").style.pointerEvents == "all" ? "none" : "all"
             }
             if ((mediaLink.toLowerCase().includes("imgur.com") && mediaLink.toLowerCase().includes(".gifv"))) {
                 var vid = document.createElement("video")
@@ -300,7 +301,7 @@ var posts;
 
 var currInd = 0;
 var currArr = []
-var url = prompt("Enter the URL to your Eternity saved posts")
+var url = Array.from((new URLSearchParams(window.location.href)).values())[0] != "" ? Array.from((new URLSearchParams(window.location.href)).values())[0] : prompt("Enter the URL to your Eternity saved posts")
 try {
 	new URL(url)
 	getPosts(url)
