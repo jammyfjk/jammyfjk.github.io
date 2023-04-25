@@ -333,7 +333,7 @@ function getPosts(url) {
 	    })
 }
 window.onscroll = () => {
-    currInd = (Math.round(window.scrollY * Math.floor(window.innerWidth / 500) / 750)) + 3 * Math.floor(window.innerWidth / 500)
+    currInd = (Math.round(window.scrollY * Math.floor(window.innerWidth / 500) / (window.innerHeight * 0.75))) + 3 * Math.floor(window.innerWidth / 500)
       const ci = currInd
       if (!currArr.includes(ci) && ci < posts.length) {
 	  currArr.push(ci)
